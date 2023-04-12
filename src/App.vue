@@ -1,23 +1,12 @@
 <template>
   <div class="app">
     <Navbar />
-    <div class="container text-center">
-      <div class="row">
-        <div class="col">
-          <CountriesList :countries="data" />
-        </div>
-        <div class="col-7">
-          <CountryDetails />
-        </div>
-      </div>
-    </div>
+    <RouterView :countries="data"></RouterView>
   </div>
 </template>
 
 <script setup>
 import Navbar from './components/Navbar.vue'
-import CountriesList from './views/CountriesList.vue'
-import CountryDetails from "./views/CountryDetails.vue"
 
 import { ref, onMounted } from 'vue';
 const url = 'https://ih-countries-api.herokuapp.com/countries';
@@ -38,4 +27,4 @@ onMounted(() => {
 
 </script>
 
-<style></style>
+<style scoped></style>
