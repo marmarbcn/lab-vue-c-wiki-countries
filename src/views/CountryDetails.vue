@@ -1,25 +1,49 @@
 <template>
-    <div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item  text-start">BANDERA </li>
+    <div class="container">
+        <div class="mx-auto"><!-- Flag and country -->
+            <img class="rounded mx-auto d-block"
+                :src="`https://flagpedia.net/data/flags/w580/${country.alpha2Code.toLowerCase()}.webp`"
+                :alt="country.name.official" />
+            <h1 class="text-center">{{ country.name.official }}</h1>
 
-            <li class="list-group-item text-start">
-                <h1>name</h1>
-            </li>
-            <li class="list-group-item text-start">Capital</li>
-            <li class="list-group-item text-start">Area</li>
-            <li class="list-group-item text-start">Borders
-                <ul>
-                    <li class="text-end">are unaffected by this style</li>
-                    <li class="text-end">will still show a bullet</li>
-                    <li class="text-end">and have appropriate left margin</li>
-                </ul>
-            </li>
-        </ul>
+        </div>
+        <hr>
+        <div class="row text-start"> <!-- capital -->
+            <p class="col">Capital</p>
+            <p class="col">{{ country.capital[0] }}</p>
+        </div>
+        <hr>
+        <div class="row text-start"> <!-- area -->
+            <p class="col">Area</p>
+            <p class="col">{{ country.area }} km</p>
+        </div>
+        <hr>
+        <div class="row text-start"> <!-- borders -->
+            <p class="col">Borders</p>
+            <ul class="col">
+                <li v-for="border in country.borders" :key="border">{{ border }}
+                    <!-- <RouterLink :to="`/list/${country.alpha3Code}`">{{ border }}</RouterLink> -->
+                </li>
+            </ul>
+
+
+
+        </div>
+
     </div>
 </template>
+
 <script setup>
-
-
-
+const props = defineProps(['country']);
 </script>
+
+<style scoped>
+.container {
+    margin: 20px;
+}
+
+img {
+    object-fit: cover;
+    height: 200px;
+}
+</style>
